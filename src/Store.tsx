@@ -1,14 +1,5 @@
 import React from 'react'
-
-interface IState {
-    episodes: [],
-    favorites: []
-}
-
-interface IAction {
-    type: string,
-    payload: any
-}
+import { IState, IAction  } from './interfaces'
 
 const initialState:IState = {
     episodes: [],
@@ -19,10 +10,12 @@ export const Store = React.createContext<IState | any>(initialState)
 
 function reducer(state:IState, action:IAction):IState {
     switch (action.type) {
-        // action
+        // action reducers
         // once it fetches data from the API, it will populate the store with new data
         case 'FETCH_DATA':
             return {...state, episodes: action.payload }
+        case 'ADD_FAV':
+            return {...state, favorites: [...state.favorites, action.payload]}
         default: 
             return state
     }

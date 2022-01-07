@@ -1,0 +1,40 @@
+html {
+  font-size: 14px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.episode-layout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  min-width: 100vh;
+}
+
+.episode-box {
+  padding: .5rem;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background: #fff;
+  border-bottom: 1px solid #000;
+  padding: .5rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+/*# sourceMappingURL=styles.css.map */
