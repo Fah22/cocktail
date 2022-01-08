@@ -30,7 +30,7 @@ const App = ():JSX.Element => {
     payload: episode
   })
 
-  
+  {console.log(state)}
 
   return (
     <>
