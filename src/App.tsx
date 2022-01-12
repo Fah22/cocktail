@@ -1,6 +1,10 @@
 import React from 'react'
 import { Store } from './Store';
-import { IAction, IEpisode} from './interfaces';
+import { IAction, IEpisode, IEpisodeProps } from './interfaces';
+import { Link } from 'react-router-dom'
+
+
+const EpisodeList = React.lazy<any>(() => import('./Episodes'))
 
 const App = ():JSX.Element => {
  
@@ -25,10 +29,32 @@ const App = ():JSX.Element => {
   }
 
   // select your fav episdoe 
-  const favEpisode = (episode:IEpisode):IAction => dispatch({
+  const favEpisode = (episode:IEpisode):IAction => {
+    // checks in our favourites array which episodes are included in it
+  const isEpisdoeFav = state.favorites.includes(episode)
+
+  // this dipatch obj will come in handy to create the toggle effect that adds/removes an episode from favourites
+  let dispatchObj = {
     type: 'ADD_FAV',
     payload: episode
-  })
+  }
+
+  if (isEpisdoeFav) {
+    const newFavArray = state.favorites.filter((fav:IEpisode) => fav.id !== episode.id)
+    dispatchObj = {
+      type: 'REMOVE_FAV',
+      payload: newFavArray
+    }
+  }
+
+  return dispatch(dispatchObj)
+  }
+
+  const props:IEpisodeProps = {
+    episodes: state.episodes,
+    favEpisode,
+    favorites: state.favorites
+  }
 
   {console.log(state)}
 
@@ -36,26 +62,16 @@ const App = ():JSX.Element => {
     <>
       <div className='header'>
         <h1>The Bold Type</h1>
-        <p>Select Your Favorite Episode</p>
+        <div className="favs">
+          <Link to='/'>Home</Link>
+          <Link to='favorites'>Favorites: {state.favorites.length}</Link>
+        </div>
       </div>
-      <section className='episode-layout'>
-        {state.episodes.map((episode:IEpisode) => {
-          return (
-            <section key={episode.id} className='episode-box'>
-              <img src={episode.image.medium} alt={`The Bold Type ${episode.name}`} />
-              <div>{episode.name}</div>
-              <section>
-                <div>
-                  Season: {episode.season} Number: {episode.number}
-                </div>
-                <button type='button' onClick={() => favEpisode(episode)}>
-                  <i className="far fa-heart"></i>
-                </button>
-              </section>
-            </section>
-          )
-        })}
-      </section>
+      <React.Suspense fallback={<div>loading...</div>}>
+          <section className='episode-layout'>
+            <EpisodeList {...props} />
+          </section>
+      </React.Suspense>
     </>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { IState, IAction  } from './interfaces'
+import { IState, IAction, IEpisode  } from './interfaces'
 
 const initialState:IState = {
     episodes: [],
@@ -16,6 +16,8 @@ function reducer(state:IState, action:IAction):IState {
             return {...state, episodes: action.payload }
         case 'ADD_FAV':
             return {...state, favorites: [...state.favorites, action.payload]}
+        case 'REMOVE_FAV':
+            return {...state, favorites: action.payload} // replace the array with what is passed in our payload
         default: 
             return state
     }

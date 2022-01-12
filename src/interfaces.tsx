@@ -1,10 +1,10 @@
 export interface IState {
-    episodes: Array<any>,
+    episodes: Array<any>
     favorites: Array<any>
 }
 
 export interface IAction {
-    type: string,
+    type: string
     payload: any
 }
 
@@ -24,4 +24,10 @@ export interface IEpisode {
   summary: string
   type: string
   url: string
+}
+
+export interface IEpisodeProps {
+  episodes: IEpisode[]
+  favEpisode: (episode: IEpisode) => IAction
+  favorites: IEpisode[]
 }
