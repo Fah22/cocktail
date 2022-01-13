@@ -2,9 +2,13 @@ import React from 'react'
 import { Store } from './Store';
 import { IAction, IEpisode, IEpisodeProps } from './interfaces';
 import { Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './components/Home';
+import { Favorites } from './components/Favorites';
+import NavBar from './components/NavBar';
 
 
-const EpisodeList = React.lazy<any>(() => import('./Episodes'))
+const EpisodeList = React.lazy<any>(() => import('./components/Episodes'))
 
 const App = ():JSX.Element => {
  
@@ -60,11 +64,16 @@ const App = ():JSX.Element => {
 
   return (
     <>
+    <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/favorites' element={<Favorites />} />
+        </Routes>
+    </BrowserRouter>
       <div className='header'>
-        <h1>The Bold Type</h1>
+        <NavBar />
         <div className="favs">
-          <Link to='/'>Home</Link>
-          <Link to='favorites'>Favorites: {state.favorites.length}</Link>
+          
         </div>
       </div>
       <React.Suspense fallback={<div>loading...</div>}>

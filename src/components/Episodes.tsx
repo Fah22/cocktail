@@ -1,5 +1,5 @@
 import React from 'react'
-import { IEpisode } from './interfaces';
+import { IEpisode } from '../interfaces';
 
 export default function Episodes(props: any):JSX.Element[] | any {
     const {episodes, favEpisode, favorites} = props
