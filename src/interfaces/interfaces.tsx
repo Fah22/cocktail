@@ -1,6 +1,6 @@
 export interface IState {
-    episodes: Array<any>
-    favorites: Array<any>
+    episodes: Array<IEpisode>
+    favorites: Array<IEpisode>
 }
 
 export interface IAction {
@@ -28,6 +28,7 @@ export interface IEpisode {
 
 export interface IEpisodeProps {
   episodes: IEpisode[]
-  favEpisode: (episode: IEpisode) => IAction
+  store: {state: IState, dispatch: any}
+  favEpisode: (state:IState, dispatch:any, episode: IEpisode) => IAction
   favorites: IEpisode[]
 }

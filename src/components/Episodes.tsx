@@ -1,8 +1,11 @@
 import React from 'react'
-import { IEpisode } from '../interfaces';
+import { IEpisode } from '../interfaces/interfaces';
 
 export default function Episodes(props: any):JSX.Element[] | any {
-    const {episodes, favEpisode, favorites} = props
+    const {episodes, favEpisode, favorites, store} = props
+
+    const {state, dispatch} = store
+
     return episodes.map((episode:IEpisode) => {
           return (
             <section key={episode.id} className='episode-box'>
@@ -12,7 +15,7 @@ export default function Episodes(props: any):JSX.Element[] | any {
                 <div>
                   Season: {episode.season} Number: {episode.number}
                 </div>
-                <button type='button' onClick={() => favEpisode(episode)}>
+                <button type='button' onClick={() => favEpisode(state, dispatch, episode)}>
                   {favorites.find((fav:IEpisode) => fav.id == episode.id) ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>}
                 </button>
               </section>

@@ -1,86 +1,35 @@
 import React from 'react'
-import { Store } from './Store';
-import { IAction, IEpisode, IEpisodeProps } from './interfaces';
+import { Store } from './store/Store';
+import { IAction, IEpisode, IEpisodeProps } from './interfaces/interfaces';
 import { Link } from 'react-router-dom'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './components/Home';
 import { Favorites } from './components/Favorites';
-import NavBar from './components/NavBar';
 
-
-const EpisodeList = React.lazy<any>(() => import('./components/Episodes'))
-
-const App = ():JSX.Element => {
+const App = (props:any):JSX.Element => {
  
   const {state, dispatch} = React.useContext(Store)
 
-  // useEffect will help us get data as soon as a user lands on the page
-  // by default the episodes array is empty
-  React.useEffect(() => {
-    state.episodes.length === 0 && fetchData()
-  })
-
-  // create an async function to perfrom the fetch
-  const fetchData = async () => {
-    const URL = 'https://api.tvmaze.com/singlesearch/shows?q=the+bold+type&embed=episodes'
-    // we'll dispaytch our action which will send data to our reducer -> update the store
-    const data = await fetch(URL)
-    const dataJSON = await data.json();
-    return dispatch({
-      type: 'FETCH_DATA', // matches our action.type in store.tsx
-      payload: dataJSON._embedded.episodes
-    })
-  }
-
-  // select your fav episdoe 
-  const favEpisode = (episode:IEpisode):IAction => {
-    // checks in our favourites array which episodes are included in it
-  const isEpisdoeFav = state.favorites.includes(episode)
-
-  // this dipatch obj will come in handy to create the toggle effect that adds/removes an episode from favourites
-  let dispatchObj = {
-    type: 'ADD_FAV',
-    payload: episode
-  }
-
-  if (isEpisdoeFav) {
-    const newFavArray = state.favorites.filter((fav:IEpisode) => fav.id !== episode.id)
-    dispatchObj = {
-      type: 'REMOVE_FAV',
-      payload: newFavArray
-    }
-  }
-
-  return dispatch(dispatchObj)
-  }
-
-  const props:IEpisodeProps = {
-    episodes: state.episodes,
-    favEpisode,
-    favorites: state.favorites
-  }
-
-  {console.log(state)}
-
   return (
     <>
-    <BrowserRouter>
+      <header className='header'>
+        <div>
+          <h1>The Bold Type</h1>
+          <p>Pick your favourite Episode</p>
+        </div>
+        <div>
+          <a href='/'>Home</a>
+          <a href='/favorites'>Favorite(s): {state.favorites.length}</a>
+        </div>
+        {props.children}
+      </header>
+
+      <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/favorites' element={<Favorites />} />
         </Routes>
     </BrowserRouter>
-      <div className='header'>
-        <NavBar />
-        <div className="favs">
-          
-        </div>
-      </div>
-      <React.Suspense fallback={<div>loading...</div>}>
-          <section className='episode-layout'>
-            <EpisodeList {...props} />
-          </section>
-      </React.Suspense>
     </>
   )
 }
