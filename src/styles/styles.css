@@ -1,23 +1,6 @@
-:root {
-  --background: #fff;
-  --text-primary: #000;
-  --text-secondary: #8e05c2;
-  --accent: #8e05c2;
-  --border: rgb(121, 121, 121);
-  --episodeCard: #fff;
-}
-
-[data-theme='dark'] {
-  --background: #000;
-  --text-primary: #fff;
-  --text-secondary: #8e05c2;
-  --accent: #8e05c2;
-  --border: #808080;
-  --episodeCard: #191919;
-}
-
 html {
   font-size: 14px;
+  font-family: 'Dosis', sans-serif;
 }
 
 body {
@@ -26,32 +9,12 @@ body {
   font-size: 15px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  background: #000;
 }
 
-.app {
-  background: var(--background);
-  color: var(--text-primary);
-}
-
-.episode-layout {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  min-width: 100vh;
-  -webkit-transition: all .5s;
-  transition: all .5s;
-}
-
-.theme-toggle i {
-  font-size: 2rem;
-  cursor: pointer;
-}
-
-.episode-box {
-  padding: 0.5rem;
-  background: var(--episodeCard);
+button {
+  background: transparent;
+  border: none;
 }
 
 .header {
@@ -61,8 +24,8 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background: #fff;
-  border-bottom: 1px solid #797979;
+  background: #000;
+  color: #fff;
   padding: 0.5rem;
   position: -webkit-sticky;
   position: sticky;
@@ -71,8 +34,59 @@ body {
           box-shadow: 0px 0px 12px var(--border);
 }
 
+.header h1 {
+  padding: 1em 2.5em;
+}
+
 .heading {
   text-align: center;
   font-weight: lighter;
+  background: #000;
+  color: #fff;
+}
+
+.episode-layout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  min-width: 100vh;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  background: #000;
+}
+
+.theme-toggle i {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.episode-box {
+  padding: 0.5rem;
+  background: #000;
+  color: #fff;
+}
+
+.episode-img {
+  border-radius: 12px;
+}
+
+#heart-outline {
+  color: #fff;
+  cursor: pointer;
+}
+
+#heart-fill {
+  color: #f73434;
+}
+
+.fav {
+  text-decoration: none;
+  color: #fff;
+  padding: 0em 2em;
 }
 /*# sourceMappingURL=styles.css.map */
