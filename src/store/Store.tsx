@@ -24,7 +24,7 @@ function reducer(state:IState, action:IAction):IState {
 }
 
 // the goal is to make sure that the value attribute is passed down to any component that is passed through the store
-export function StoreProvider(props:any):JSX.Element {
+export function StoreProvider({children}: JSX.ElementChildrenAttribute):JSX.Element {
     const [state, dispatch] = React.useReducer(reducer, initialState)
-    return <Store.Provider value={{state, dispatch}}>{props.children}</Store.Provider>
+    return <Store.Provider value={{state, dispatch}}>{children}</Store.Provider>
 }

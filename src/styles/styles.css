@@ -1,3 +1,21 @@
+:root {
+  --background: #fff;
+  --text-primary: #000;
+  --text-secondary: #8e05c2;
+  --accent: #8e05c2;
+  --border: rgb(121, 121, 121);
+  --episodeCard: #fff;
+}
+
+[data-theme='dark'] {
+  --background: #000;
+  --text-primary: #fff;
+  --text-secondary: #8e05c2;
+  --accent: #8e05c2;
+  --border: #808080;
+  --episodeCard: #191919;
+}
+
 html {
   font-size: 14px;
 }
@@ -10,6 +28,11 @@ body {
           box-sizing: border-box;
 }
 
+.app {
+  background: var(--background);
+  color: var(--text-primary);
+}
+
 .episode-layout {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -17,10 +40,18 @@ body {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   min-width: 100vh;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.theme-toggle i {
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 .episode-box {
   padding: 0.5rem;
+  background: var(--episodeCard);
 }
 
 .header {
@@ -31,10 +62,17 @@ body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   background: #fff;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #797979;
   padding: 0.5rem;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  -webkit-box-shadow: 0px 0px 12px var(--border);
+          box-shadow: 0px 0px 12px var(--border);
+}
+
+.heading {
+  text-align: center;
+  font-weight: lighter;
 }
 /*# sourceMappingURL=styles.css.map */
