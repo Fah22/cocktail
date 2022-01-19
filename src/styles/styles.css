@@ -1,6 +1,6 @@
 html {
   font-size: 14px;
-  font-family: 'Dosis', sans-serif;
+  font-family: "Dosis", sans-serif;
 }
 
 body {
@@ -18,20 +18,9 @@ button {
 }
 
 .header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   background: #000;
   color: #fff;
   padding: 0.5rem;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  -webkit-box-shadow: 0px 0px 12px var(--border);
-          box-shadow: 0px 0px 12px var(--border);
 }
 
 .header h1 {
@@ -54,9 +43,8 @@ button {
           justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  min-width: 100vh;
-  -webkit-transition: all .5s;
-  transition: all .5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
   background: #000;
 }
 
@@ -66,13 +54,22 @@ button {
 }
 
 .episode-box {
-  padding: 0.5rem;
+  padding: 1rem;
   background: #000;
   color: #fff;
 }
 
 .episode-img {
   border-radius: 12px;
+  cursor: pointer;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.episode-img:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  z-index: 1.5;
 }
 
 #heart-outline {
@@ -82,11 +79,32 @@ button {
 
 #heart-fill {
   color: #f73434;
+  cursor: pointer;
 }
 
 .fav {
   text-decoration: none;
   color: #fff;
   padding: 0em 2em;
+  text-align: center;
+}
+
+.fav a {
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+}
+
+@media only screen and (min-width: 320px) {
+  .header {
+    display: block;
+    padding: 0rem;
+  }
+  .header h1 {
+    text-align: center;
+  }
+  .fav {
+    text-align: center;
+  }
 }
 /*# sourceMappingURL=styles.css.map */
